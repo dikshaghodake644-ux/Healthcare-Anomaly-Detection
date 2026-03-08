@@ -1,0 +1,33 @@
+st.header("Enter Patient Vitals")
+
+heart_rate = st.number_input("Heart Rate")
+blood_pressure = st.number_input("Blood Pressure")
+temperature = st.number_input("Temperature")
+spo2 = st.number_input("SpO2")
+
+if st.button("Check Status"):
+
+    vitals = np.array([heart_rate, blood_pressure, temperature, spo2])
+
+    score = np.sum([
+        heart_rate < 60 or heart_rate > 100,
+        blood_pressure < 80 or blood_pressure > 140,
+        temperature < 36 or temperature > 38,
+        spo2 < 95
+
+    if score == 0:
+        result = "LOW"
+    elif score <= 2:
+        result = "MEDIUM"
+    else:
+        result = "HIGH"
+
+    st.success(f"Health Condition: {result}")
+
+
+data = {
+    "Heart Rate":[72,95,120],
+    "Blood Pressure":[120,140,160],
+    "Temperature":[36.5,37.2,39],
+    "SpO2":[98,96,90]
+}
